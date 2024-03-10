@@ -1,7 +1,5 @@
 package co.edu.icesi.viajes.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,7 +7,7 @@ import java.util.Date;
 
 
 @Data
-public class ClientDTO implements Serializable {
+public class ClienteDTO implements Serializable {
 
     private Integer idClie;
     private String numeroIdentificacion;
@@ -27,12 +25,11 @@ public class ClientDTO implements Serializable {
     private String usuModificador;
     private String estado;
     private Integer idTiid;
+    private double pp;
+    private double sumatoriaPagos;
 
-    public ClientDTO(String sexo) {
-        this.sexo = sexo;
-    }
 
-    public ClientDTO(Integer idClie, String numeroIdentificacion, String primerApellido, String segundoApellido, String nombre, String telefono1, String telefono2, String correo, String sexo, Date fechaNacimiento, String usuCreador,String estado) {
+    public ClienteDTO(Integer idClie, String numeroIdentificacion, String primerApellido, String segundoApellido, String nombre, String telefono1, String telefono2, String correo, String sexo, Date fechaNacimiento, String usuCreador, String estado) {
         this.idClie = idClie;
         this.numeroIdentificacion = numeroIdentificacion;
         this.primerApellido = primerApellido;
@@ -47,21 +44,16 @@ public class ClientDTO implements Serializable {
         this.estado = estado;
     }
 
-    //    public ClientDTO(Integer idClie, String numeroIdentificacion, String primerApellido, String segundoApellido, String nombre, String telefono1, String telefono2, String correo, String sexo, Date fechaNacimiento, Date fechaCreacion, Date fechaModificacion, String usuCreador, String estado, Integer idTiid) {
-//        this.idClie = idClie;
-//        this.numeroIdentificacion = numeroIdentificacion;
-//        this.primerApellido = primerApellido;
-//        this.segundoApellido = segundoApellido;
-//        this.nombre = nombre;
-//        this.telefono1 = telefono1;
-//        this.telefono2 = telefono2;
-//        this.correo = correo;
-//        this.sexo = sexo;
-//        this.fechaNacimiento = fechaNacimiento;
-//        this.fechaCreacion = fechaCreacion;
-//        this.fechaModificacion = fechaModificacion;
-//        this.usuCreador = usuCreador;
-//        this.estado = estado;
-//        this.idTiid = idTiid;
-//    }
+    public ClienteDTO(String numero_identificacion, String nombre, String estado, Integer id_tiid) {
+        this.numeroIdentificacion = numero_identificacion;
+        this.nombre = nombre;
+        this.estado = estado;
+        this.idTiid =id_tiid;
+    }
+
+    public ClienteDTO(String nombre, Date fechaCreacion, Double sumatoriaPagos) {
+        this.nombre = nombre;
+        this.fechaCreacion = fechaCreacion;
+        this.sumatoriaPagos = sumatoriaPagos;
+    }
 }

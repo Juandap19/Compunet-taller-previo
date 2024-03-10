@@ -1,6 +1,7 @@
 package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.Destino;
+import co.edu.icesi.viajes.domain.TipoDestino;
 import co.edu.icesi.viajes.repository.DestinoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Scope("Singleton")
+@Scope("singleton")
 @Service
 public class DestinoServiceImpl implements DestinoService{
 
@@ -52,11 +53,26 @@ public class DestinoServiceImpl implements DestinoService{
 
     @Override
     public void validate(Destino entity) throws Exception {
-//No yet
+        //No yet
     }
 
     @Override
     public Long count() {
         return destinoRepository.count();
+    }
+
+    @Override
+    public List<Destino> findByCodigoAndEstado(String codigo) {
+        return destinoRepository.findByCodigoAndEstado(codigo);
+    }
+
+    @Override
+    public List<Object[]> findAllDestinosWithActiveType() {
+        return destinoRepository.findAllDestinosWithActiveType();
+    }
+
+    @Override
+    public List<Destino> finAllOrderByNombreAsc() {
+        return destinoRepository.finAllOrderByNombreAsc();
     }
 }

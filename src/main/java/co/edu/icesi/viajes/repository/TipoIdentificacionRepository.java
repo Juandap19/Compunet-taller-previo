@@ -1,6 +1,5 @@
 package co.edu.icesi.viajes.repository;
 
-import co.edu.icesi.viajes.domain.TipoDestino;
 import co.edu.icesi.viajes.domain.TipoIdentificacion;
 import org.springframework.data.jpa.repository.JpaRepository;
 

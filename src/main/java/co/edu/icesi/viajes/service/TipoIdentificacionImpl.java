@@ -1,8 +1,6 @@
 package co.edu.icesi.viajes.service;
 
-import co.edu.icesi.viajes.domain.TipoDestino;
 import co.edu.icesi.viajes.domain.TipoIdentificacion;
-import co.edu.icesi.viajes.repository.TipoDestinoRepository;
 import co.edu.icesi.viajes.repository.TipoIdentificacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -11,9 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Scope("Singleton")
+@Scope("singleton")
 @Service
-public class TipoIdentificacionImpl implements TipoIdentificacionService{
+public class TipoIdentificacionImpl implements co.edu.icesi.viajes.service.TipoIdentificacionService {
 
     @Autowired
     private TipoIdentificacionRepository tipoIdentificacionRepository;
@@ -57,5 +55,16 @@ public class TipoIdentificacionImpl implements TipoIdentificacionService{
     @Override
     public Long count() {
         return tipoIdentificacionRepository.count();
+    }
+
+
+    @Override
+    public List<TipoIdentificacion> findByEstadoOrderByEstadoDesc(String a) {
+        return tipoIdentificacionRepository.findByEstadoOrderByEstadoDesc(a);
+    }
+
+    @Override
+    public List<TipoIdentificacion> findByCodigoAndEstado(String number, String a) {
+        return tipoIdentificacionRepository.findByCodigoAndEstado(number,a);
     }
 }

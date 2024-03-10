@@ -1,7 +1,6 @@
 package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.TipoDestino;
-import co.edu.icesi.viajes.repository.TipoDestinoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.aspectj.bridge.MessageUtil.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -76,9 +76,7 @@ public class TipoDestinoTest {
     @Test
     void test_tipoDestinoUpdate() throws Exception {
 
-        TipoDestino td = tipoDestinoService.findById(10).get();
-
-
+        TipoDestino td = tipoDestinoService.findById(3).get();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date date1 = formato.parse("27/02/2024");
         td.setNombre("Museo De Bellas Artes");
@@ -120,5 +118,27 @@ public class TipoDestinoTest {
         System.out.println("Cantidad de tipos de destino:" + tipoDestinoService.count());
     }
 
+
+    @Test
+    void  test_findByCodigoAndEstado(){
+        List< TipoDestino> lsTipoDestino = tipoDestinoService.findByCodigoAndEstado("Playa","A");
+        for (TipoDestino tipoDestino :lsTipoDestino) {
+            System.out.println(tipoDestino.getCodigo() + " --- " + tipoDestino.getNombre());
+        }
+    }
+
+//    14. Consultar los tipos de destino ordenados alfabéticamente.
+
+    @Test
+    void test_finAllOrderByNombreAsc(){
+        List<TipoDestino> tipoDestinos = tipoDestinoService.finAllOrderByNombreAsc();
+        System.out.println("                        Tipo Destino - test_finAllOrderByNombreAsc\n                    Input Request: NA \n-------------------------------------------------------");
+        for (TipoDestino tipoDestino : tipoDestinos){
+            assertEquals("A",tipoDestino.getEstado());
+            System.out.println("|Nombre Tipo Destino:" + tipoDestino.getNombre() + " |Codigo:" + tipoDestino.getCodigo() + " |Estado: "+tipoDestino.getEstado() + "|");
+        }
+        System.out.println("---------------------------------------------------");
+
+    }
 
 }

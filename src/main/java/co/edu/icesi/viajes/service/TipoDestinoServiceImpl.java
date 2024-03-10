@@ -55,4 +55,25 @@ public class TipoDestinoServiceImpl implements TipoDestinoService{
     public Long count() {
         return tipoDestinoRepository.count();
     }
+
+    @Override
+    public List<TipoDestino> findByCodigo(String codigo){
+
+        return tipoDestinoRepository.findByCodigo(codigo);
+    }
+
+    @Override
+    public List<TipoDestino> findByCodigoAndEstado(String codigo, String estado){
+     return tipoDestinoRepository.findByCodigoAndEstado(codigo,estado);
+    }
+
+    @Override
+    public List<TipoDestino> consultarPorCodigo(String codigo, String estado){
+        return tipoDestinoRepository.consultarPorCodigo(codigo,estado);
+    }
+
+    @Override
+    public List<TipoDestino> finAllOrderByNombreAsc() {
+        return tipoDestinoRepository.finAllOrderByNombreAsc();
+    }
 }

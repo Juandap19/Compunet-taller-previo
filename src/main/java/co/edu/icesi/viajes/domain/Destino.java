@@ -25,15 +25,15 @@ public class Destino {
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     @Column(name = "tierra", nullable = false)
-    private Date tierra;
+    private String tierra;
     @Column(name = "aire", nullable = false)
-    private Date aire;
+    private String aire;
     @Column(name = "mar", nullable = false)
     private String mar;
     @Column(name = "fecha_creacion", nullable = false)
-    private String fechaCreacion;
+    private Date fechaCreacion;
     @Column(name = "fecha_modificacion")
-    private String fechaModificacion;
+    private Date fechaModificacion;
     @Column(name = "usu_creador", nullable = false)
     private String usuCreador;
     @Column(name = "usu_modificador")
@@ -41,6 +41,6 @@ public class Destino {
     @Column(name = "estado", nullable = false)
     private String estado;
     @Column(name = "id_tide", nullable = false)
-    private String idTide;
+    private Integer idTide;
 
 }

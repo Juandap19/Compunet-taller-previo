@@ -1,6 +1,7 @@
 package co.edu.icesi.viajes.repository;
 
 import co.edu.icesi.viajes.domain.Cliente;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,11 +24,25 @@ public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
      List<Cliente> findByTwoDates(Date date1, Date date2);
 
      List<Cliente> findByEstado(String estado);
-     List<Cliente> findByNumeroIdentificacion(String numeroIdentificacion);
+
+     @Query("SELECT cl FROM Cliente cl JOIN TipoIdentificacion ti ON cl.idTiid = ti.idTiid WHERE ti.codigo = ?1 ")
+     List<Cliente> findByTipoIdentificacion(String TipoIdentificacion, Pageable pageable);
      List<Cliente> findByPrimerApellidoAndSegundoApellido(String primerApellido, String segundoApellido);
     @Query(nativeQuery = true)
     List<ClienteDTO> consultarClientePorSexo(@Param("psexo") String sexo);
-    List<Cliente> findByEstadoAndNumeroIdentificacionAndIdTiidAndNombreLikeOrderByNombreAsc(String estado, String numeroIdentificacion ,Integer identificationTipe,String name);
+    @Query(nativeQuery = true)
+    List<ClienteDTO> consultarFiltros(
+            @Param("pnumeroIdentificacion") String numero_identificacion,
+            @Param("pnombre") String nombre,
+            @Param("pestado") String estado,
+            @Param("ptipoIdentificacion") Integer id_tiid
+    );
 
-
+    @Query( "SELECT new co.edu.icesi.viajes.dto.ClienteDTO(cl.nombre, cl.fechaCreacion, SUM(pl.valorTotal)) " +
+            "FROM Cliente cl " +
+            "JOIN Plan pl ON pl.idClie = cl.idClie " +
+            "WHERE cl.estado = 'A' " +
+            "GROUP BY cl.nombre, cl.fechaCreacion " +
+            "ORDER BY SUM(pl.valorTotal) DESC LIMIT 3")
+    List<ClienteDTO> findByTop3ActiveClientsSpent();
 }

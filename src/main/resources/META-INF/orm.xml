@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+        xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+        http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
+        version="2.2">
+
+    <entity class="co.edu.icesi.viajes.domain.Cliente">
+
+        <named-native-query name="Cliente.consultarClientePorSexo" result-set-mapping="consultarClientePorSexo">
+            <query>
+                SELECT *
+                FROM Cliente cl
+                WHERE cl.sexo = :psexo
+            </query>
+        </named-native-query>
+        <named-native-query name="Cliente.consultarFiltros" result-set-mapping="consultarFiltros">
+            <query>
+                SELECT *
+                FROM Cliente cl
+                WHERE cl.estado LIKE :pestado
+                AND cl.numero_identificacion LIKE :pnumeroIdentificacion
+                AND cl.id_tiid = :ptipoIdentificacion
+                AND cl.nombre LIKE :pnombre
+                ORDER BY nombre ASC;
+            </query>
+        </named-native-query>
+    </entity>
+</entity-mappings>

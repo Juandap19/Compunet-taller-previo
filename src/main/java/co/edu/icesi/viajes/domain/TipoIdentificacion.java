@@ -24,18 +24,12 @@ public class TipoIdentificacion {
     @Column(name = "nombre", nullable = false)
     private String nombre;
     @Column(name = "fecha_creacion", nullable = false)
-    private String fechaCreacion;
+    private Date fechaCreacion;
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
-    @Column(name = "usu_creador", nullable = false)
-    private String usuCreador;
     @Column(name = "usu_modificador")
     private String usuModificador;
     @Column(name = "estado", nullable = false)
     private String estado;
-    @Column(name = "id_clie", nullable = false)
-    private String idClie;
-    @Column(name = "id_usua", nullable = false)
-    private String idUsua;
 
 }

@@ -21,8 +21,8 @@ public class Usuario {
     private Integer idUsua;
     @Column(name = "login", nullable = false)
     private String login;
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "password_", nullable = false)
+    private String password_;
     @Column(name = "nombre", nullable = false)
     private String nombre;
     @Column(name = "identificacion", nullable = false)

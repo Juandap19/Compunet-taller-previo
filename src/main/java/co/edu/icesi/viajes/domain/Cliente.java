@@ -1,13 +1,49 @@
 package co.edu.icesi.viajes.domain;
 
 import java.util.Date;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
+
+import co.edu.icesi.viajes.dto.ClienteDTO;
+import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+
+@NamedNativeQueries({
+                @NamedNativeQuery(name="Cliente.consultarClientePorSexo", query = "", resultSetMapping="consultarClientePorSexo"),
+                @NamedNativeQuery(name="Cliente.consultarFiltros", query = "", resultSetMapping="consultarFiltros"),
+})
+
+@SqlResultSetMappings({
+                @SqlResultSetMapping(name = "consultarClientePorSexo",
+                        classes = {
+                            @ConstructorResult(targetClass = ClienteDTO.class,
+                            columns = {
+                                    @ColumnResult(name = "id_clie", type = Integer.class),
+                                    @ColumnResult(name = "numero_identificacion", type = String.class),
+                                    @ColumnResult(name = "primer_apellido", type = String.class),
+                                    @ColumnResult(name = "segundo_apellido", type = String.class),
+                                    @ColumnResult(name = "nombre", type = String.class),
+                                    @ColumnResult(name = "telefono1", type = String.class),
+                                    @ColumnResult(name = "telefono2", type = String.class),
+                                    @ColumnResult(name = "correo", type = String.class),
+                                    @ColumnResult(name = "sexo", type = String.class),
+                                    @ColumnResult(name = "fecha_nacimiento", type = Date.class),
+                                    @ColumnResult(name = "usu_creador", type = String.class),
+                                    @ColumnResult(name = "estado", type = String.class),
+                            })
+                        }
+                ),
+                @SqlResultSetMapping(name = "consultarFiltros",
+                        classes = {
+                                @ConstructorResult(targetClass = ClienteDTO.class,
+                                        columns = {
+                                                @ColumnResult(name = "numero_identificacion", type = String.class),
+                                                @ColumnResult(name = "nombre", type = String.class),
+                                                @ColumnResult(name = "estado", type = String.class),
+                                                @ColumnResult(name = "id_tiid", type = Integer.class),
+                                        })
+                        }
+                ),
+})
 
 
 @Data
@@ -25,9 +61,9 @@ public class Cliente {
     @Column(name = "segundo_apellido")
     private String segundoApellido;
     @Column(name = "nombre", nullable = false)
-    private Date nombre;
+    private String nombre;
     @Column(name = "telefono1")
-    private Date telefono1;
+    private String telefono1;
     @Column(name = "telefono2")
     private String telefono2;
     @Column(name = "correo")
@@ -35,11 +71,11 @@ public class Cliente {
     @Column(name = "sexo", nullable = false)
     private String sexo;
     @Column(name = "fecha_nacimiento", nullable = false)
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
     @Column(name = "fecha_creacion", nullable = false)
-    private String fechaCreacion;
+    private Date fechaCreacion;
     @Column(name = "fecha_modificacion")
-    private String fechaModificacion;
+    private Date fechaModificacion;
     @Column(name = "usu_creador", nullable = false)
     private String usuCreador;
     @Column(name = "usu_modificador")
@@ -47,6 +83,6 @@ public class Cliente {
     @Column(name = "estado", nullable = false)
     private String estado;
     @Column(name = "id_tiid", nullable = false)
-    private String idTiid;
+    private Integer idTiid;
 
 }

@@ -26,19 +26,19 @@ public class Plan {
     @Column(name = "nombre", nullable = false)
     private String nombre;
     @Column(name = "cantidad_personas", nullable = false)
-    private Date cantidadPersonas;
+    private Integer cantidadPersonas;
     @Column(name = "fecha_solicitud", nullable = false)
     private Date fechaSolicitud;
     @Column(name = "fecha_inicio_viaje")
-    private String fechaInicioViaje;
+    private Date fechaInicioViaje;
     @Column(name = "fecha_fin_viaje")
-    private String fechaFinViaje;
+    private Date fechaFinViaje;
     @Column(name = "valor_total", nullable = false)
-    private String valorTotal;
+    private Double valorTotal;
     @Column(name = "fecha_creacion", nullable = false)
-    private String fechaCreacion;
+    private Date fechaCreacion;
     @Column(name = "fecha_modificacion")
-    private String fechaModificacion;
+    private Date fechaModificacion;
     @Column(name = "usu_creador", nullable = false)
     private String usuCreador;
     @Column(name = "usu_modificador")
@@ -46,8 +46,8 @@ public class Plan {
     @Column(name = "estado", nullable = false)
     private String estado;
     @Column(name = "id_clie", nullable = false)
-    private String idClie;
+    private Integer idClie;
     @Column(name = "id_usua", nullable = false)
-    private String idUsua;
+    private Integer idUsua;
 
 }
